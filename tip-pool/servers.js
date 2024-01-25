@@ -38,7 +38,21 @@ function updateServerTable() {
 
     appendTd(newTr, curServer.serverName);
     appendTd(newTr, '$' + tipAverage.toFixed(2));
-    
+    appendDeleteBtn(newTr);
     serverTbody.append(newTr);
   }
+}
+
+//create delete button and append to table row
+function appendDeleteBtn(tr) {
+  let newTd = document.createElement('td');
+  newTd.className = 'deleteBtn';
+  newTd.innerText = 'X';
+
+  newTd.addEventListener('click', function(event) {
+    const parentRow = event.target.parentNode;
+    parentRow.parentNode.removeChild(parentRow);
+  });
+
+  tr.append(newTd);
 }

@@ -55,6 +55,7 @@ function appendPaymentTable(curPayment) {
   appendTd(newTr, '$' + curPayment.billAmt);
   appendTd(newTr, '$' + curPayment.tipAmt);
   appendTd(newTr, curPayment.tipPercent + '%');
+  deletePayment(newTr);
 
   paymentTbody.append(newTr);
 }
@@ -76,3 +77,15 @@ function updateSummary() {
   summaryTds[2].innerHTML =  Math.round(tipPercentAvg) + '%';
 }
 
+function deletePayment(tr) {
+  let newTd = document.createElement('td');
+  newTd.className = 'deleteBtn';
+  newTd.innerText = 'X';
+
+  newTd.addEventListener('click', function(event) {
+    const parentRow = event.target.parentNode;
+    parentRow.parentNode.removeChild(parentRow);
+  });
+
+  tr.append(newTd);
+}
